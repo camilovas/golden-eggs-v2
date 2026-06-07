@@ -253,44 +253,67 @@ function toggleLang() {
 
 // ─── HUMANGUARD ────────────────────────────────────────────────────────────
 
-let hgToken = null;
+let hgToken  = null;
 let hgMounted = false;
+let hgSdkLoaded = false;
 
 function triggerHG() {
   if (hgMounted) return;
   hgMounted = true;
 
-  const btn = document.getElementById('hg-btn');
+  const btn       = document.getElementById('hg-btn');
   const container = document.getElementById('hg-container');
 
   btn.disabled = true;
-  const loadingText = currentLang === 'es' ? 'Verificando...' : 'Verifying...';
-  document.getElementById('hg-text').textContent = loadingText;
+  document.getElementById('hg-text').textContent = currentLang === 'es' ? 'Cargando...' : 'Loading...';
 
-  var hg = document.createElement('human-guard');
-  hg.setAttribute('api-url', HG_API_URL);
-  hg.setAttribute('site-key', HG_SITE_KEY);
-  hg.setAttribute('challenge', 'auto');
-  container.appendChild(hg);
+  function mountWidget() {
+    document.getElementById('hg-text').textContent = currentLang === 'es' ? 'Verificando...' : 'Verifying...';
+    var hg = document.createElement('human-guard');
+    hg.setAttribute('api-url', HG_API_URL);
+    hg.setAttribute('site-key', HG_SITE_KEY);
+    hg.setAttribute('challenge', 'auto');
+    container.appendChild(hg);
 
-  hg.addEventListener('challenge-complete', function(e) {
-    hgToken = e.detail.result_token || e.detail.token;
-    btn.className = 'hg-btn-verified w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all cursor-default';
-    document.getElementById('hg-icon').textContent = '✓';
-    document.getElementById('hg-text').textContent = currentLang === 'es' ? 'Verificado' : 'Verified';
-    document.getElementById('submit-btn').disabled = false;
-    container.innerHTML = '';
-  });
+    hg.addEventListener('challenge-complete', function(e) {
+      hgToken = e.detail.result_token || e.detail.token;
+      btn.className = 'hg-btn-verified w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all cursor-default';
+      document.getElementById('hg-icon').textContent = '✓';
+      document.getElementById('hg-text').textContent = currentLang === 'es' ? 'Verificado' : 'Verified';
+      document.getElementById('submit-btn').disabled = false;
+      container.innerHTML = '';
+    });
 
-  hg.addEventListener('challenge-failed', function() {
+    hg.addEventListener('challenge-failed', function() {
+      hgMounted = false;
+      btn.disabled = false;
+      document.getElementById('hg-icon').textContent = '☐';
+      document.getElementById('hg-text').textContent = translations[currentLang].hg_not_robot;
+      container.innerHTML = '';
+    });
+
+    hg.show();
+  }
+
+  if (hgSdkLoaded) {
+    mountWidget();
+    return;
+  }
+
+  // Lazy-load SDK only when needed
+  var script = document.createElement('script');
+  script.src = HG_API_URL + '/sdk/humanguard.min.js';
+  script.onload = function() {
+    hgSdkLoaded = true;
+    mountWidget();
+  };
+  script.onerror = function() {
     hgMounted = false;
     btn.disabled = false;
     document.getElementById('hg-icon').textContent = '☐';
     document.getElementById('hg-text').textContent = translations[currentLang].hg_not_robot;
-    container.innerHTML = '';
-  });
-
-  hg.show();
+  };
+  document.head.appendChild(script);
 }
 
 // ─── CONTACT FORM ──────────────────────────────────────────────────────────
