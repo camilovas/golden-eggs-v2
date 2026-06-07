@@ -63,12 +63,12 @@
 
         <!-- Right: lang toggle + CTA -->
         <div class="flex items-center gap-3">
-          <button id="lang-toggle" onclick="toggleLang()" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors border border-gray-700">
+          <button id="lang-toggle" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors border border-gray-700">
             <span id="lang-label">🇺🇸 EN</span>
           </button>
           <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-gray-950 font-semibold text-sm transition-colors" data-i18n="nav_cta">Contactar</a>
           <!-- Mobile menu button -->
-          <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
@@ -77,11 +77,11 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800 bg-gray-950">
       <div class="px-4 py-3 flex flex-col gap-1">
-        <a href="#services" onclick="toggleMobileMenu()" class="py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_services">Servicios</a>
-        <a href="#projects" onclick="toggleMobileMenu()" class="py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_projects">Proyectos</a>
-        <a href="#about" onclick="toggleMobileMenu()" class="py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_about">Sobre mí</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_contact">Contacto</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="mt-2 py-2 px-4 text-center rounded-lg bg-amber-500 text-gray-950 font-semibold text-sm" data-i18n="nav_cta">Contactar</a>
+        <a href="#services" class="mobile-nav-link py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_services">Servicios</a>
+        <a href="#projects" class="mobile-nav-link py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_projects">Proyectos</a>
+        <a href="#about" class="mobile-nav-link py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_about">Sobre mí</a>
+        <a href="#contact" class="mobile-nav-link py-2 text-sm text-gray-400 hover:text-white" data-i18n="nav_contact">Contacto</a>
+        <a href="#contact" class="mobile-nav-link mt-2 py-2 px-4 text-center rounded-lg bg-amber-500 text-gray-950 font-semibold text-sm" data-i18n="nav_cta">Contactar</a>
       </div>
     </div>
   </nav>
@@ -385,7 +385,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
         <!-- Form -->
         <div class="lg:col-span-3">
-          <form id="contact-form" onsubmit="submitContact(event)" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8">
+          <form id="contact-form" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
                 <label class="block text-xs font-medium text-gray-400 mb-1.5" data-i18n="form_name">Nombre</label>
@@ -414,7 +414,7 @@
 
             <!-- HumanGuard widget -->
             <div class="mb-5">
-              <button type="button" id="hg-btn" onclick="triggerHG()" class="hg-btn-idle w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all">
+              <button type="button" id="hg-btn" class="hg-btn-idle w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all">
                 <span id="hg-icon" class="text-base">☐</span>
                 <span id="hg-text" data-i18n="hg_not_robot">No soy robot</span>
                 <span class="ml-auto text-xs text-gray-500">HumanGuard</span>

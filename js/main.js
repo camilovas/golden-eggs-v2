@@ -345,21 +345,42 @@ async function submitContact(event) {
   }
 }
 
-// ─── MOBILE MENU ───────────────────────────────────────────────────────────
-
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  menu.classList.toggle('hidden');
-}
-
-// Close mobile menu on outside click
-document.addEventListener('click', function(e) {
-  const menu = document.getElementById('mobile-menu');
-  const nav  = document.querySelector('nav');
-  if (!nav.contains(e.target)) menu.classList.add('hidden');
-});
-
 // ─── INIT ──────────────────────────────────────────────────────────────────
 
-// DOM is already parsed when this script runs (placed at bottom of body)
-setLang(currentLang);
+(function init() {
+  // Lang toggle
+  document.getElementById('lang-toggle').addEventListener('click', function() {
+    setLang(currentLang === 'es' ? 'en' : 'es');
+  });
+
+  // Mobile menu toggle
+  var mobileBtn  = document.getElementById('mobile-menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  mobileBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking a link inside it
+  document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
+
+  // HumanGuard button
+  document.getElementById('hg-btn').addEventListener('click', triggerHG);
+
+  // Contact form submit
+  document.getElementById('contact-form').addEventListener('submit', submitContact);
+
+  // Apply language on load
+  setLang(currentLang);
+}());
