@@ -209,10 +209,24 @@ function setLang(lang) {
   localStorage.setItem('lang', lang);
   const t = translations[lang];
 
-  // Text content
+  // Text content — if element has child elements (e.g. SVG inside a button),
+  // only replace the first text node to avoid destroying child markup
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) el.textContent = t[key];
+    if (t[key] === undefined) return;
+    if (el.children.length === 0) {
+      el.textContent = t[key];
+    } else {
+      let replaced = false;
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+          node.textContent = ' ' + t[key] + ' ';
+          replaced = true;
+          break;
+        }
+      }
+      if (!replaced) el.prepend(document.createTextNode(t[key]));
+    }
   });
 
   // Placeholders
@@ -347,6 +361,5 @@ document.addEventListener('click', function(e) {
 
 // ─── INIT ──────────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', function() {
-  setLang(currentLang);
-});
+// DOM is already parsed when this script runs (placed at bottom of body)
+setLang(currentLang);
