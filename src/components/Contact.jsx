@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useLang } from '../i18n/LangContext'
 
-const HG_SITE_KEY = 'f71de3a2-3f62-4033-8217-ae58ac1b7604'
+const HG_SITE_KEY = '01013d8a-c806-44e8-a7b0-e39eae8e9962'
 const HG_API_URL = 'https://api.humanguard.app'
 const CONTACT_ENDPOINT = `${HG_API_URL}/contact`
 
