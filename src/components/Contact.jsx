@@ -154,28 +154,79 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* HumanGuard */}
+                {/* HumanGuard constellation widget */}
                 <div>
-                  <button
-                    type="button"
-                    onClick={triggerHG}
-                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all ${
-                      hgStatus === 'verified'
-                        ? 'border-green-500/40 bg-green-500/5 text-green-400 cursor-default'
+                  <div
+                    onClick={hgStatus === 'idle' ? triggerHG : undefined}
+                    className={`rounded-xl border overflow-hidden transition-all duration-200 ${hgStatus === 'idle' ? 'cursor-pointer hover:border-[#6C5CE7]/50' : ''}`}
+                    style={{
+                      background: '#141233',
+                      borderColor: hgStatus === 'verified'
+                        ? 'rgba(43,224,138,0.45)'
                         : hgStatus === 'loading'
-                        ? 'border-amber-500/30 bg-amber-500/5 text-amber-400 cursor-wait'
-                        : 'border-[#1e1e2e] hover:border-amber-500/30 text-gray-400 hover:text-amber-400 cursor-pointer'
-                    }`}
+                        ? 'rgba(108,92,231,0.45)'
+                        : 'rgba(255,255,255,0.08)',
+                    }}
                   >
-                    <span className="text-base">
-                      {hgStatus === 'verified' ? '✅' : hgStatus === 'loading' ? '⏳' : '☐'}
-                    </span>
-                    <span>
-                      {hgStatus === 'verified' ? tr.hg_verified : tr.hg_not_robot}
-                    </span>
-                    <span className="ml-auto text-xs text-gray-600">HumanGuard</span>
-                  </button>
-                  <div ref={hgRef} className="mt-2" />
+                    {/* Header */}
+                    <div className="flex items-center gap-2.5 px-3.5 py-2.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                      {/* Constellation SVG */}
+                      <svg width="20" height="22" viewBox="0 0 140 150" fill="none" aria-hidden="true">
+                        <g stroke="#6C5CE7" strokeWidth="5" strokeLinecap="round">
+                          <line x1="72" y1="34" x2="70" y2="66"/>
+                          <line x1="70" y1="66" x2="44" y2="54"/>
+                          <line x1="70" y1="66" x2="100" y2="50"/>
+                          <line x1="70" y1="66" x2="56" y2="100"/>
+                          <line x1="70" y1="66" x2="90" y2="102"/>
+                        </g>
+                        <g fill="#F7F7FB">
+                          <circle cx="44" cy="54" r="9"/><circle cx="100" cy="50" r="9"/>
+                          <circle cx="70" cy="66" r="10"/>
+                          <circle cx="56" cy="100" r="9"/><circle cx="90" cy="102" r="9"/>
+                        </g>
+                        <circle cx="72" cy="22" r="13" fill="#2BE08A"/>
+                      </svg>
+                      {/* Wordmark */}
+                      <span style={{ color: '#F7F7FB', fontWeight: 700, fontSize: 13, letterSpacing: '-0.01em' }}>
+                        humanguard<span style={{ position: 'relative', display: 'inline-block' }}>
+                          ı
+                          <span style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: '-2px', width: '4px', height: '4px', borderRadius: '50%', background: '#2BE08A', display: 'block' }} />
+                        </span>
+                      </span>
+                      <span className="ml-auto" style={{ color: 'rgba(247,247,251,0.28)', fontSize: 10, fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+                        {tr.hg_label}
+                      </span>
+                    </div>
+
+                    {/* Body — visual state only, ref lives outside */}
+                    {hgStatus === 'verified' ? (
+                      <div className="flex items-center gap-2.5 px-3.5 py-3">
+                        <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#2BE08A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <span style={{ color: '#141233', fontSize: 11, fontWeight: 800, lineHeight: 1 }}>✓</span>
+                        </div>
+                        <span style={{ color: '#2BE08A', fontWeight: 600, fontSize: 13 }}>
+                          {tr.hg_revealed}
+                        </span>
+                      </div>
+                    ) : hgStatus === 'loading' ? (
+                      <div className="flex items-center gap-3 px-3.5 py-3">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5 }}>
+                          <circle cx="12" cy="12" r="10" stroke="#6C5CE7" strokeWidth="2.5" strokeDasharray="31" strokeDashoffset="10"/>
+                        </svg>
+                        <p style={{ color: 'rgba(247,247,251,0.45)', fontSize: 12, fontFamily: 'monospace' }}>
+                          {tr.hg_analyzing}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-3 px-3.5 py-3">
+                        <div style={{ width: 16, height: 16, border: '1.5px solid rgba(247,247,251,0.18)', borderRadius: 3, flexShrink: 0 }} />
+                        <span style={{ color: 'rgba(247,247,251,0.62)', fontSize: 13 }}>{tr.hg_not_robot}</span>
+                        <svg style={{ marginLeft: 'auto', opacity: 0.25 }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F7F7FB" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      </div>
+                    )}
+                  </div>
+                  {/* Mount point: siempre en el DOM para que el web component funcione */}
+                  <div ref={hgRef} style={{ display: 'none' }} />
                 </div>
 
                 {/* Submit */}
