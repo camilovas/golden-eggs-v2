@@ -41,3 +41,41 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify Telegram - Success
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.GE_TG_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "{\"chat_id\":\"${{ secrets.GE_TG_CHAT_ID }}\",\"text\":\"*Deploy exitoso - Golden Eggs v2*\n\nURL: ${{ steps.deployment.outputs.page_url }}\nCommit: \`${GITHUB_SHA::7}\`\nBy: ${{ github.actor }}\",\"parse_mode\":\"Markdown\"}"
+
+      - name: Notify Telegram - Failure
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.GE_TG_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "{\"chat_id\":\"${{ secrets.GE_TG_CHAT_ID }}\",\"text\":\"*Deploy FALLIDO - Golden Eggs v2*\n\nCommit: \`${GITHUB_SHA::7}\`\nBy: ${{ github.actor }}\nVer: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"parse_mode\":\"Markdown\"}"
+
+  uptime-check:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deploy propagation
+        run: sleep 30
+
+      - name: Check site is live
+        id: health
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://camilovas.github.io/golden-eggs-v2/)
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          if [ "$STATUS" != "200" ]; then
+            echo "Site returned $STATUS"
+            exit 1
+          fi
+
+      - name: Notify Telegram - Site Down
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.GE_TG_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "{\"chat_id\":\"${{ secrets.GE_TG_CHAT_ID }}\",\"text\":\"*ALERTA - Golden Eggs v2 NO responde*\n\nHTTP Status: ${{ steps.health.outputs.status }}\nURL: https://camilovas.github.io/golden-eggs-v2/\",\"parse_mode\":\"Markdown\"}"
