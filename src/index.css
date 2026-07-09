@@ -61,6 +61,19 @@
   background-size: 28px 28px;
 }
 
+/* Sol Negro logo rotation */
+.solnegro-ring {
+  animation: solnegro-rotate 40s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes solnegro-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .solnegro-ring { animation: none; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0A0705; }

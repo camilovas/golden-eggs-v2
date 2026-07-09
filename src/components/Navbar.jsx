@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo Sol Negro — estático, sin animación */}
         <a href="#" className="flex items-center gap-2.5">
-          <SolNegroMark size={28} />
+          <SolNegroMark size={36} />
           <span
             className="hidden sm:block text-ge-cream"
             style={{ fontFamily: "'Marcellus', serif", fontSize: 13, letterSpacing: '0.08em' }}
