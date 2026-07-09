@@ -27,7 +27,7 @@ function ProjectCard({ icon, title, desc, tags, tagColor, accent, link, linkLabe
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors"
+            className="text-xs text-ge-gold hover:text-ge-photon flex items-center gap-1 transition-colors"
           >
             {linkLabel}
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,8 +36,8 @@ function ProjectCard({ icon, title, desc, tags, tagColor, accent, link, linkLabe
           </a>
         )}
       </div>
-      <h3 className="font-bold text-white text-base mb-2">{title}</h3>
-      <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{desc}</p>
+      <h3 className="font-bold text-ge-cream text-base mb-2">{title}</h3>
+      <p className="text-ge-muted text-sm leading-relaxed mb-4 flex-1">{desc}</p>
       <TagList tags={tags} colorClass={tagColor} />
     </div>
   )
@@ -48,43 +48,43 @@ export default function Projects() {
 
   const projects = [
     {
-      icon: { emoji: '🛡️', bg: 'bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/30' },
+      icon: { emoji: '🛡️', bg: 'bg-ge-gold/15 border border-ge-gold/25' },
       title: tr.proj1_title,
       desc: tr.proj1_desc,
       tags: tr.proj1_badge,
-      tagColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-      accent: 'border-amber-500/20 hover:border-amber-500/50',
+      tagColor: 'bg-ge-gold/10 text-ge-gold border-ge-gold/20',
+      accent: 'border-ge-gold/20 hover:border-ge-gold/45',
       link: 'https://humanguard.app',
       linkLabel: tr.proj_view,
     },
     {
-      icon: { emoji: '🤖', bg: 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/30' },
+      icon: { emoji: '🤖', bg: 'bg-gradient-to-br from-cyan-500/15 to-cyan-500/5 border border-cyan-500/25' },
       title: tr.proj3_title,
       desc: tr.proj3_desc,
       tags: tr.proj3_badge,
       tagColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-      accent: 'border-cyan-500/20 hover:border-cyan-500/50',
+      accent: 'border-cyan-500/15 hover:border-cyan-500/40',
     },
     {
-      icon: { emoji: '💬', bg: 'bg-gradient-to-br from-green-500/20 to-green-500/5 border border-green-500/30' },
+      icon: { emoji: '💬', bg: 'bg-gradient-to-br from-green-500/15 to-green-500/5 border border-green-500/25' },
       title: tr.proj4_title,
       desc: tr.proj4_desc,
       tags: tr.proj4_badge,
       tagColor: 'bg-green-500/10 text-green-400 border-green-500/20',
-      accent: 'border-green-500/20 hover:border-green-500/50',
+      accent: 'border-green-500/15 hover:border-green-500/40',
     },
     {
-      icon: { emoji: '💌', bg: 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/30' },
+      icon: { emoji: '💌', bg: 'bg-gradient-to-br from-purple-500/15 to-purple-500/5 border border-purple-500/25' },
       title: tr.proj2_title,
       desc: tr.proj2_desc,
       tags: tr.proj2_badge,
       tagColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-      accent: 'border-purple-500/20 hover:border-purple-500/40',
+      accent: 'border-purple-500/15 hover:border-purple-500/40',
     },
   ]
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 bg-[#0d0d15]">
+    <section id="projects" className="py-24 px-4 sm:px-6 bg-ge-alt">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="badge">{tr.projects_title}</span>
@@ -99,7 +99,7 @@ export default function Projects() {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-gray-600 text-sm">{tr.proj_more} →</p>
+          <p className="text-ge-faint text-sm">{tr.proj_more} →</p>
         </div>
       </div>
     </section>

@@ -1,37 +1,10 @@
 import { useState, useRef } from 'react'
 import { useLang } from '../i18n/LangContext'
+import SolNegroMark from './SolNegroMark'
 
 const HG_SITE_KEY = 'c5d30722-b300-4aa9-aab9-fd5d76353133'
 const HG_API_URL = 'https://api.humanguard.app'
 const CONTACT_ENDPOINT = `${HG_API_URL}/contact`
-
-// Sol Negro — simplified SVG mark (ring + 8 rays + void)
-function SolNegro({ size = 48 }) {
-  const s = size
-  const cx = s / 2, cy = s / 2
-  const r = s * 0.46
-  const rInner = s * 0.19
-  const rayLen = s * 0.06
-
-  return (
-    <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`} aria-hidden="true">
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#D9A441" strokeWidth={s * 0.009} opacity="0.9"/>
-      <g stroke="#D9A441" strokeWidth={s * 0.012} strokeLinecap="round">
-        <line x1={cx} y1={s * 0.016} x2={cx} y2={s * 0.016 + rayLen}/>
-        <line x1={cx} y1={s * 0.984 - rayLen} x2={cx} y2={s * 0.984}/>
-        <line x1={s * 0.016} y1={cy} x2={s * 0.016 + rayLen} y2={cy}/>
-        <line x1={s * 0.984 - rayLen} y1={cy} x2={s * 0.984} y2={cy}/>
-        <line x1={s * 0.157} y1={s * 0.157} x2={s * 0.157 + rayLen * 0.7} y2={s * 0.157 + rayLen * 0.7}/>
-        <line x1={s * 0.807} y1={s * 0.807} x2={s * 0.807 + rayLen * 0.7} y2={s * 0.807 + rayLen * 0.7}/>
-        <line x1={s * 0.807} y1={s * 0.157} x2={s * 0.807 + rayLen * 0.7} y2={s * 0.157 - rayLen * 0.7}/>
-        <line x1={s * 0.157} y1={s * 0.843 - rayLen * 0.7} x2={s * 0.157 + rayLen * 0.7} y2={s * 0.843}/>
-      </g>
-      <circle cx={cx} cy={cy} r={rInner} fill="#000"
-        style={{ filter: `drop-shadow(0 0 ${s * 0.09}px rgba(217,164,65,0.5))` }}/>
-      <circle cx={cx} cy={cy} r={rInner} fill="none" stroke="#FFD37A" strokeWidth={s * 0.007}/>
-    </svg>
-  )
-}
 
 // Estilos inline Sol Negro reutilizables
 const GE = {
@@ -121,7 +94,7 @@ export default function Contact() {
 
         {/* Header */}
         <div className="text-center mb-16 flex flex-col items-center gap-5">
-          <SolNegro size={72} />
+          <SolNegroMark size={72} />
           <div>
             <span style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -242,7 +215,7 @@ export default function Contact() {
                       padding: '10px 14px',
                       borderBottom: '1px solid rgba(217,164,65,0.10)',
                     }}>
-                      <SolNegro size={22} />
+                      <SolNegroMark size={22} />
                       <span style={{ fontFamily: "'Marcellus', serif", fontSize: 12, letterSpacing: '0.10em', color: GE.cream }}>
                         GOLDEN <span style={{ color: GE.gold }}>EGGS</span>
                       </span>

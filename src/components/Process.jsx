@@ -20,20 +20,20 @@ export default function Process() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-ge-gold/25 to-transparent" />
 
           {steps.map(({ num, titleKey, descKey, icon }) => (
             <div key={num} className="relative text-center group">
               <div className="relative inline-flex">
-                <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl mx-auto group-hover:bg-amber-500/20 transition-colors">
+                <div className="w-16 h-16 rounded-2xl bg-ge-gold/10 flex items-center justify-center text-2xl mx-auto group-hover:bg-ge-gold/20 transition-colors" style={{ border: '1px solid rgba(217,164,65,0.18)' }}>
                   {icon}
                 </div>
-                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-amber-500 text-black text-[10px] font-black flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-ge-gold text-ge-bg text-[10px] font-black flex items-center justify-center">
                   {num.slice(1)}
                 </span>
               </div>
-              <h3 className="font-semibold text-white mt-4 mb-2">{tr[titleKey]}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{tr[descKey]}</p>
+              <h3 className="font-semibold text-ge-cream mt-4 mb-2">{tr[titleKey]}</h3>
+              <p className="text-ge-faint text-sm leading-relaxed">{tr[descKey]}</p>
             </div>
           ))}
         </div>

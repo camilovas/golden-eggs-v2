@@ -40,11 +40,11 @@ export default function Services() {
                 transitionDelay: `${i * 60}ms`,
               }}
             >
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-xl mb-4 group-hover:bg-amber-500/20 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-ge-gold/10 flex items-center justify-center text-xl mb-4 group-hover:bg-ge-gold/20 transition-colors">
                 {SERVICE_ICONS[i]}
               </div>
-              <h3 className="font-semibold text-white text-sm mb-2">{tr[titleKey]}</h3>
-              <p className="text-gray-500 text-xs leading-relaxed">{tr[descKey]}</p>
+              <h3 className="font-semibold text-ge-cream text-sm mb-2">{tr[titleKey]}</h3>
+              <p className="text-ge-faint text-xs leading-relaxed">{tr[descKey]}</p>
             </div>
           ))}
         </div>

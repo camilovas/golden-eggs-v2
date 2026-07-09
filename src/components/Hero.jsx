@@ -8,26 +8,26 @@ export default function Hero() {
       {/* Dot grid */}
       <div className="absolute inset-0 dot-grid opacity-40" />
 
-      {/* Amber glow bottom */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-amber-500/5 rounded-full blur-3xl" />
+      {/* Gold glow bottom */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-ge-gold/[0.04] rounded-full blur-3xl" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-16 w-full">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/5 text-amber-400 text-xs font-medium mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-slow" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ge-gold/30 bg-ge-gold/5 text-ge-gold text-xs font-medium mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-ge-gold animate-pulse-slow" />
             {tr.hero_badge}
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-ge-cream leading-tight tracking-tight">
             {tr.hero_title}
             <br />
-            <span className="text-amber-400">{tr.hero_title2}</span>
+            <span className="text-ge-gold">{tr.hero_title2}</span>
           </h1>
 
           {/* Sub */}
-          <p className="mt-6 text-lg text-gray-400 max-w-xl leading-relaxed">
+          <p className="mt-6 text-lg text-ge-muted max-w-xl leading-relaxed">
             {tr.hero_sub}
           </p>
 
@@ -52,8 +52,8 @@ export default function Hero() {
               { value: '3+', label: tr.hero_stat3 },
             ].map(({ value, label }) => (
               <div key={label} className="flex flex-col">
-                <span className="text-3xl font-black text-amber-400">{value}</span>
-                <span className="text-sm text-gray-500 mt-0.5">{label}</span>
+                <span className="text-3xl font-black text-ge-gold">{value}</span>
+                <span className="text-sm text-ge-faint mt-0.5">{label}</span>
               </div>
             ))}
           </div>
@@ -64,7 +64,7 @@ export default function Hero() {
           <div className="card space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-xs text-gray-500">Disponible para proyectos</span>
+              <span className="text-xs text-ge-faint">Disponible para proyectos</span>
             </div>
             {[
               { icon: '⚡', label: 'React / Next.js' },
@@ -75,9 +75,9 @@ export default function Hero() {
             ].map(({ icon, label }) => (
               <div key={label} className="flex items-center gap-3 text-sm">
                 <span className="text-base w-6 text-center">{icon}</span>
-                <span className="text-gray-300">{label}</span>
-                <div className="ml-auto w-16 h-1.5 rounded-full bg-[#1e1e2e] overflow-hidden">
-                  <div className="h-full bg-amber-500/70 rounded-full" style={{ width: '90%' }} />
+                <span className="text-ge-muted">{label}</span>
+                <div className="ml-auto w-16 h-1.5 rounded-full bg-ge-bg overflow-hidden">
+                  <div className="h-full bg-ge-gold/70 rounded-full" style={{ width: '90%' }} />
                 </div>
               </div>
             ))}
@@ -86,9 +86,9 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <div className="w-5 h-8 border border-gray-600 rounded-full flex justify-center pt-1.5">
-          <div className="w-1 h-2 bg-amber-400 rounded-full animate-bounce" />
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+        <div className="w-5 h-8 border border-ge-faint rounded-full flex justify-center pt-1.5">
+          <div className="w-1 h-2 bg-ge-gold rounded-full animate-bounce" />
         </div>
       </div>
     </section>

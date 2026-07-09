@@ -27,9 +27,8 @@ export default function About() {
           {/* Photo */}
           <div className="flex justify-center md:justify-end order-1 md:order-2">
             <div className="relative">
-              {/* Glow behind photo */}
-              <div className="absolute inset-0 rounded-3xl bg-amber-500/20 blur-2xl scale-110" />
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-[#111118]">
+              <div className="absolute inset-0 rounded-3xl bg-ge-gold/15 blur-2xl scale-110" />
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl overflow-hidden bg-ge-surface" style={{ border: '2px solid rgba(217,164,65,0.25)' }}>
                 <img
                   src={`${import.meta.env.BASE_URL}camilo.png`}
                   alt="Camilo Vasquez"
@@ -37,7 +36,7 @@ export default function About() {
                 />
               </div>
               {/* Badge disponible */}
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111118] border border-[#1e1e2e] text-xs font-medium text-gray-300 shadow-xl">
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap flex items-center gap-2 px-4 py-1.5 rounded-full bg-ge-surface text-xs font-medium text-ge-muted shadow-xl" style={{ border: '1px solid rgba(217,164,65,0.12)' }}>
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 {tr.about_available}
               </div>
@@ -48,8 +47,8 @@ export default function About() {
           <div className="order-2 md:order-1">
             <span className="badge mb-3">{tr.about_label}</span>
             <h2 className="section-heading mb-4">{tr.about_title}</h2>
-            <p className="text-gray-400 leading-relaxed mb-4">{tr.about_p1}</p>
-            <p className="text-gray-400 leading-relaxed mb-6">{tr.about_p2}</p>
+            <p className="text-ge-muted leading-relaxed mb-4">{tr.about_p1}</p>
+            <p className="text-ge-muted leading-relaxed mb-6">{tr.about_p2}</p>
 
             <div className="grid grid-cols-3 gap-4">
               {[
@@ -57,9 +56,9 @@ export default function About() {
                 { value: '50+', label: tr.about_stat2 },
                 { value: '3', label: tr.about_stat3 },
               ].map(({ value, label }) => (
-                <div key={label} className="text-center p-3 rounded-xl bg-[#111118] border border-[#1e1e2e]">
-                  <div className="text-2xl font-black text-amber-400">{value}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{label}</div>
+                <div key={label} className="text-center p-3 rounded-xl bg-ge-surface" style={{ border: '1px solid rgba(217,164,65,0.10)' }}>
+                  <div className="text-2xl font-black text-ge-gold">{value}</div>
+                  <div className="text-xs text-ge-faint mt-0.5">{label}</div>
                 </div>
               ))}
             </div>
@@ -67,15 +66,15 @@ export default function About() {
         </div>
 
         {/* Tech logos strip */}
-        <div className="border-t border-[#1e1e2e] pt-12">
-          <p className="text-center text-xs text-gray-600 uppercase tracking-widest mb-8">{tr.about_stack}</p>
+        <div className="pt-12" style={{ borderTop: '1px solid rgba(217,164,65,0.10)' }}>
+          <p className="text-center text-xs text-ge-faint uppercase tracking-widest mb-8">{tr.about_stack}</p>
           <div className="flex flex-wrap justify-center gap-6 items-center">
             {TECH_LOGOS.map(({ name, svg }) => (
               <div key={name} className="flex flex-col items-center gap-2 group cursor-default">
-                <div className="w-10 h-10 p-1.5 rounded-xl bg-[#111118] border border-[#1e1e2e] group-hover:border-amber-500/30 transition-colors flex items-center justify-center">
-                  <img src={svg} alt={name} className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                <div className="w-10 h-10 p-1.5 rounded-xl bg-ge-surface group-hover:border-ge-gold/30 transition-colors flex items-center justify-center" style={{ border: '1px solid rgba(217,164,65,0.10)' }}>
+                  <img src={svg} alt={name} className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <span className="text-[10px] text-gray-600 group-hover:text-gray-400 transition-colors">{name}</span>
+                <span className="text-[10px] text-ge-faint group-hover:text-ge-muted transition-colors">{name}</span>
               </div>
             ))}
           </div>
